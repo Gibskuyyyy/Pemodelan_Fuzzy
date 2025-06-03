@@ -1,0 +1,39 @@
+[System]
+Name='Mamdani'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Permintaan'
+Range=[0 7000]
+NumMFs=2
+MF1='Turun':'trapmf',[-10000000000000 0 1000 5000]
+MF2='Naik':'trapmf',[1000 5000 7000 10000000000000]
+
+[Input2]
+Name='Persediaan'
+Range=[0 700]
+NumMFs=2
+MF1='Sedikit':'trapmf',[-10000 0 100 500]
+MF2='Banyak':'trapmf',[100 500 700 70000]
+
+[Output1]
+Name='Produksi'
+Range=[0 10000]
+NumMFs=2
+MF1='Berkurang':'trapmf',[-1000 0 2000 7000]
+MF2='Bertambah':'trapmf',[2000 7000 10000 1000000]
+
+[Rules]
+1 2, 1 (1) : 1
+1 1, 1 (1) : 1
+2 2, 2 (1) : 1
+2 1, 2 (1) : 1
